@@ -161,14 +161,14 @@ CONTAINS
     CHARACTER(*),   INTENT(INOUT) :: IOMSG
     REAL, PARAMETER :: rinternal = -12345.00, runused = -12345.00
     INTEGER, PARAMETER :: iinternal = -12345, iunused = -12345
-    INTEGER :: LEVEN, LPSPOL, LOVROK, LCALDA
+    INTEGER :: LEVEN = 0, LPSPOL = 0, LOVROK = 0, LCALDA = 0
     CHARACTER(LEN=*), PARAMETER :: fmt='(14(5G15.7/),8(5I10/),(A8,A16/),7(3A8/))'
 
 ! LOGICAL to INTEGER conversion
-        LEVEN  = TRANSFER(dtv%LEVEN, 1)
-        LPSPOL = TRANSFER(dtv%LPSPOL,1)
-        LOVROK = TRANSFER(dtv%LOVROK,1)
-        LCALDA = TRANSFER(dtv%LCALDA,1)
+        IF (dtv%LEVEN .EQV..TRUE.) LEVEN  = 1
+        IF (dtv%LPSPOL.EQV..TRUE.) LPSPOL = 1
+        IF (dtv%LOVROK.EQV..TRUE.) LOVROK = 1
+        IF (dtv%LCALDA.EQV..TRUE.) LCALDA = 1
 
     WRITE(UNIT=unit, FMT=fmt) &
 ! Real
