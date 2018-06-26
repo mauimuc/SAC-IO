@@ -164,11 +164,11 @@ CONTAINS
     INTEGER :: LEVEN, LPSPOL, LOVROK, LCALDA
     CHARACTER(LEN=*), PARAMETER :: fmt='(14(5G15.7/),8(5I10/),(A8,A16/),7(3A8/))'
 
-! LOGICAL to INTEGER
-        LEVEN  = 0!dtv%LEVEN .eqv..TRUE.
-        LPSPOL = 0!dtv%LPSPOL.eqv..TRUE.
-        LOVROK = 0!dtv%LOVROK.eqv..TRUE.
-        LCALDA = 0!dtv%LCALDA.eqv..TRUE.
+! LOGICAL to INTEGER conversion
+        LEVEN  = TRANSFER(dtv%LEVEN, 1)
+        LPSPOL = TRANSFER(dtv%LPSPOL,1)
+        LOVROK = TRANSFER(dtv%LOVROK,1)
+        LCALDA = TRANSFER(dtv%LCALDA,1)
 
     WRITE(UNIT=unit, FMT=fmt) &
 ! Real
@@ -195,7 +195,7 @@ CONTAINS
         dtv%IMAGTYP, dtv%IMAGSRC, iunused, iunused, iunused, &
         iunused, iunused, iunused, iunused, iunused, &
 ! LOGICAL
-        LEVEN, LPSPOL, LOVROK, LCALDA, iunused, &
+        LEVEN, LPSPOL, LOVROK, LCALDA, 0, &
 ! character
         dtv%KSTNM, dtv%KEVNM, &
         dtv%KHOLE, dtv%KO, dtv%KA, &
